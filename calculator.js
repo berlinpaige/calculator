@@ -5,6 +5,10 @@ var calculator = {
   operatorClicked: [],
   numberClicked: [],
   decimalHasBeenClicked: false,
+  numberToEvaluate: 0,
+  numberWasClickedLast: false,
+  operatorWasClickedLast: false,
+
 
 
   init: function(){
@@ -13,11 +17,15 @@ var calculator = {
     $('.equals').click(calculator.equalsIsClicked);
     $('.clear').click(calculator.clearIsClicked);
     $('#decimal').click(calculator.decimalIsClicked);
-    $('#negativeSign').click(calculator.negativeSignIsClicked); 
+    $('#toggle').click(calculator.toggleIsClicked); 
   },
 
   numberIsClicked: function(event){
     event.preventDefault();
+    calculator.operatorWasClickedLast = false;
+    calculator.numberWasClickedLast = true;
+    console.log('num clicked last?', calculator.numberWasClickedLast);
+    console.log('operator clicked Last?', calculator.operatorWasClickedLast);
     if(calculator.numberClicked.length >= 20){
       $('.number').attr('disabled', 'disabled')
     } 
@@ -35,31 +43,39 @@ var calculator = {
   operatorIsClicked: function(event){
     event.preventDefault();
     calculator.decimalHasBeenClicked = false;
+    calculator.operatorWasClickedLast = true;
+    calculator.numberWasClickedLast = false;
+    //console.log('num clicked last?', calculator.numberWasClickedLast);
+    //console.log('operator clicked Last?', calculator.operatorWasClickedLast);
     $('#decimal').removeAttr('disabled');
     $('.number').removeAttr('disabled');
     var operatorToUse = $(this).attr('id');
     calculator.operatorClicked.push(operatorToUse);
-    if (calculator.numberClicked.length !== 0 ){
-      calculator.masterEquation.push(calculator.numberClicked.join(''));
-      console.log('master equation:',calculator.masterEquation);
-      console.log('operators', calculator.operatorClicked);
-      calculator.numberClicked = [];
-    }
+    if (calculator.numberClicked.length !== 0){
+       calculator.masterEquation.push(calculator.numberClicked.join(''));
+       //console.log('master equation:',calculator.masterEquation);
+       //console.log('operators', calculator.operatorClicked);
+       calculator.numberClicked = [];
+     }
 
     if (calculator.operatorClicked.length === 2){
       calculator.compute();
-      console.log('master equation:',calculator.masterEquation);
-    }if (calculator.masterEquation.length === 2 && calculator.operatorClicked.length < 2){
-      calculator.masterEquation.shift();
-      console.log('master equation after shift:',calculator.masterEquation);
+      //console.log('master equation:',calculator.masterEquation);
     }
-
+    if (calculator.masterEquation.length === 2 && calculator.operatorClicked.length < 2){
+      calculator.masterEquation.shift();
+      //console.log('master equation after shift:',calculator.masterEquation);
+    }
+    console.log('BestInfo MasterEquationArray', calculator.masterEquation);
+    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
+    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
 
   },
 
   equalsIsClicked: function(event){
     event.preventDefault();
     calculator.equalsClickedLast = true;
+    calculator.operatorWasClickedLast = true;
     calculator.masterEquation.push(calculator.numberClicked.join(''));
     calculator.masterEquation.splice(1, 2, calculator.numberClicked.join(''))
     calculator.compute();
@@ -78,21 +94,26 @@ var calculator = {
       $(this).attr('disabled', 'disabled');
     }
   },
-  negativeSignIsClicked: function(){
-    if(calculator.masterEquation[0] === calculator.numberToEvaluate){
+  toggleIsClicked: function(){
+    if (calculator.numberToEvaluate === 0 && calculator.operatorWasClickedLast === false
+        || calculator.operatorClicked.length < 1
+        ){
       if(calculator.numberClicked[0] !== '-'){
         calculator.numberClicked.unshift('-');
-      }else if (calculator.numberClicked[0] === '-'){
-        calculator.numberClicked.shift('-');
-      }
-    }else{ 
-      if(calculator.masterEquation[0] !== '-'){
-        calculator.masterEquation.unshift('-');
-      }else if (calculator.masterEquation[0] === '-'){
-        calculator.masterEquation.shift('-');    
-      }
-    }  
-    $('h1').text(calculator.numberClicked.toString().replace(/,/g, ''));
+       }else if (calculator.numberClicked[0] === '-'){
+         calculator.numberClicked.shift('-');
+       }
+    $('h1').text(calculator.numberClicked.toString().replace(/,/g, ''));   
+    }else if (calculator.numberToEvaluate !== 0 && calculator.operatorClicked.length >= 1
+               && calculator.operatorWasClickedLast === true){
+      calculator.numberToEvaluate = calculator.numberToEvaluate * -1
+      calculator.masterEquation.splice(0, 1, calculator.numberToEvaluate);
+      $('h1').text(calculator.masterEquation.splice(0, 1, calculator.numberToEvaluate));
+      console.log("newest masterArray:",calculator.masterEquation);
+      console.log('operater length after toggle:', calculator.operatorClicked);
+      calculator.operatorClicked = [];
+
+    }
   },
 
   clearIsClicked: function(event){
@@ -123,6 +144,7 @@ var calculator = {
     console.log('final answer', calculator.masterEquation.splice(0, 2, result));
     $('h1').text(calculator.masterEquation);
     calculator.numberToEvaluate = result;
+    console.log('numberToEvaluate: ', calculator.numberToEvaluate);
     console.log('to manipulate', result);
     if (result === undefined || NaN){
        $('h1').text('undefined');
@@ -133,6 +155,9 @@ var calculator = {
    }else{
       $('h1').css({'font-size' : '200%'})
    }
+   console.log('BestInfo MasterEquationArray', calculator.masterEquation);
+    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
+    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
   }
 }
 $(document).ready(calculator.init);
