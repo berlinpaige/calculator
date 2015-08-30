@@ -18,18 +18,26 @@ var calculator = {
 
   numberIsClicked: function(event){
     event.preventDefault();
+    if(calculator.numberClicked.length >= 20){
+      $('.number').attr('disabled', 'disabled')
+    } 
     var numberSelected = $(this).text();
     calculator.numberClicked.push(numberSelected);
     console.log('numbers clicked :' , calculator.numberClicked);
     $('h1').text(calculator.numberClicked.toString().replace(/,/g, ''));
-    
+    if ($('h1').text().length >= 13){
+      $('h1').css({'font-size' : '130%'});
+   }else{
+      $('h1').css({'font-size' : '200%'})
+   }
   },
 
   operatorIsClicked: function(event){
     event.preventDefault();
     calculator.decimalHasBeenClicked = false;
     $('#decimal').removeAttr('disabled');
-    var operatorToUse = $(this).text();
+    $('.number').removeAttr('disabled');
+    var operatorToUse = $(this).attr('id');
     calculator.operatorClicked.push(operatorToUse);
     if (calculator.numberClicked.length !== 0 ){
       calculator.masterEquation.push(calculator.numberClicked.join(''));
@@ -51,6 +59,7 @@ var calculator = {
 
   equalsIsClicked: function(event){
     event.preventDefault();
+    calculator.equalsClickedLast = true;
     calculator.masterEquation.push(calculator.numberClicked.join(''));
     calculator.masterEquation.splice(1, 2, calculator.numberClicked.join(''))
     calculator.compute();
@@ -70,16 +79,19 @@ var calculator = {
     }
   },
   negativeSignIsClicked: function(){
-    if(calculator.numberClicked[0] !== '-'){
-      calculator.numberClicked.unshift('-');
-    }else if (calculator.numberClicked[0] === '-'){
-      calculator.numberClicked.shift('-');
-    }
-    /*if(calculator.masterEquation[0] !== '-'){
-      calculator.masterEquation.unshift('-');
-    }else if (calculator.masterEquation[0] === '-'){
-      calculator.masterEquation.shift('-');    
-    }*/
+    if(calculator.masterEquation[0] === calculator.numberToEvaluate){
+      if(calculator.numberClicked[0] !== '-'){
+        calculator.numberClicked.unshift('-');
+      }else if (calculator.numberClicked[0] === '-'){
+        calculator.numberClicked.shift('-');
+      }
+    }else{ 
+      if(calculator.masterEquation[0] !== '-'){
+        calculator.masterEquation.unshift('-');
+      }else if (calculator.masterEquation[0] === '-'){
+        calculator.masterEquation.shift('-');    
+      }
+    }  
     $('h1').text(calculator.numberClicked.toString().replace(/,/g, ''));
   },
 
@@ -104,17 +116,23 @@ var calculator = {
     switch(op){
       case '+': result = parseFloat(num1) + parseFloat(num2); break;
       case '-': result = parseFloat(num1) - parseFloat(num2); break;
-      case '*': result = parseFloat(num1) * parseFloat(num2); break;
+      case 'x': result = parseFloat(num1) * parseFloat(num2); break;
       case '/': result = parseFloat(num1) / parseFloat(num2); break;
-      case '%': result = parseFloat(num1) / 100;
+      case 'percentSign': result = parseFloat(num1) / 100;
     }
     console.log('final answer', calculator.masterEquation.splice(0, 2, result));
     $('h1').text(calculator.masterEquation);
+    calculator.numberToEvaluate = result;
     console.log('to manipulate', result);
     if (result === undefined || NaN){
        $('h1').text('undefined');
        calculator.clearIsClicked();
     }
+    if ($('h1').text().length >= 13){
+      $('h1').css({'font-size' : '130%'});
+   }else{
+      $('h1').css({'font-size' : '200%'})
+   }
   }
 }
 $(document).ready(calculator.init);
