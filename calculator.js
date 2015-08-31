@@ -14,6 +14,7 @@ var calculator = {
     $('.equals').click(calculator.equalsIsClicked);
     $('.clear').click(calculator.clearIsClicked);
     $('.decimal').click(calculator.decimalIsClicked);
+    $('#percentSign').click(calculator.percentSignIsClicked);
   },
   numberIsClicked: function(event){
     event.preventDefault();
@@ -102,6 +103,10 @@ var calculator = {
       $(this).attr('disabled', 'disabled');
     }
   },
+  percentSignIsClicked: function(){
+    calculator.numberClicked.push(100);
+    calculator.compute();
+  },
   clearIsClicked: function(event){
     event.preventDefault();
     calculator.masterEquation = [];
@@ -109,6 +114,7 @@ var calculator = {
     calculator.numberClicked = [];
     calculator.decimalHasBeenClicked = false;
     calculator.operatorWasClickedLast = false;
+    calculator.equalsClickedLast = false;
     calculator.numberToEvaluate = 0;
     $('#decimal').removeAttr('disabled');
     $('h1').text('');
@@ -126,7 +132,8 @@ var calculator = {
       case '-': result = parseFloat(num1) - parseFloat(num2); break;
       case 'x': result = parseFloat(num1) * parseFloat(num2); break;
       case '/': result = parseFloat(num1) / parseFloat(num2); break;
-      case 'percentSign': result = parseFloat(num1) / 100;
+      case 'percentSign': result = parseFloat(num1) / 100; calculator.numberClicked = []; break;
+      default: $('h1').text(undefined)
     }
     console.log('final answer', calculator.masterEquation.splice(0, 2, result));
     $('h1').text(calculator.masterEquation);
