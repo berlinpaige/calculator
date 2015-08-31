@@ -67,7 +67,7 @@ var calculator = {
     calculator.decimalHasBeenClicked = false;
     calculator.operatorWasClickedLast = true;
     calculator.equalsClickedLast = false;
-    $('#decimal').removeAttr('disabled');
+    $('.decimal').removeAttr('disabled');
     var operatorToUse = $(this).attr('id');
     calculator.operatorClicked.push(operatorToUse);
     if (calculator.numberClicked.length !== 0){
@@ -101,7 +101,7 @@ var calculator = {
     calculator.operatorClicked = [];
     calculator.numberClicked = [];
     calculator.decimalHasBeenClicked = false;
-    $('#decimal').removeAttr('disabled');
+    $('.decimal').removeAttr('disabled');
     $('.number').removeAttr('disabled');
     console.log('BestInfo MasterEquationArray', calculator.masterEquation);
     console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
@@ -126,7 +126,7 @@ var calculator = {
     calculator.operatorWasClickedLast = false;
     calculator.equalsClickedLast = false;
     calculator.numberToEvaluate = 0;
-    $('#decimal').removeAttr('disabled');
+    $('.decimal').removeAttr('disabled');
     $('.number').removeAttr('disabled');
     $('.operator').removeAttr('disabled');
     $('.equals').removeAttr('disabled');
