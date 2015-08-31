@@ -7,6 +7,7 @@ var calculator = {
   numberToEvaluate: 0,
   operatorWasClickedLast: false,
   equalsClickedLast: false,
+  rightAfterEquals: false,
 
   init: function(){
     $('.number').click(calculator.numberIsClicked);
@@ -26,18 +27,23 @@ var calculator = {
     console.log('number selected', numberSelected);
     if (numberSelected === '-' && calculator.equalsClickedLast === true){
       var variableToMove = calculator.masterEquation.pop();
-      console.log('varable to move:', calculator.variableToMove);
       if(variableToMove > 0){
       calculator.numberClicked.push(variableToMove);
       }else if(variableToMove < 0){
       variableToMove = variableToMove * -1;
-      calculator.numberClicked.push(variableToMove);
+      var arrayToJoin = calculator.numberClicked.push(variableToMove);
+      calculator.rightAfterEquals = true;
+        console.log("rightAfterEquals", calculator.rightAfterEquals);
       } 
     } 
     calculator.equalsClickedLast = false;
     if (numberSelected === '-' && calculator.equalsClickedLast === false){
       if(calculator.numberClicked[0] !== '-'){
+       if(calculator.rightAfterEquals === false){ 
         calculator.numberClicked.unshift(numberSelected);
+       }else{
+        calculator.rightAfterEquals = false;
+       }
       }else if (calculator.numberClicked[0] === '-'){
         calculator.numberClicked.shift(numberSelected);
       }
@@ -113,7 +119,6 @@ var calculator = {
     calculator.compute();
   },
   clearIsClicked: function(event){
-    //event.preventDefault();
     calculator.masterEquation = [];
     calculator.operatorClicked = [];
     calculator.numberClicked = [];
