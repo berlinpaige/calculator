@@ -62,19 +62,23 @@ var calculator = {
     calculator.operatorWasClickedLast = true;
     calculator.equalsClickedLast = false;
     $('#decimal').removeAttr('disabled');
-    $('.number').removeAttr('disabled');
     var operatorToUse = $(this).attr('id');
     calculator.operatorClicked.push(operatorToUse);
     if (calculator.numberClicked.length !== 0){
        calculator.masterEquation.push(calculator.numberClicked.join(''));
        calculator.numberClicked = [];
-     }
-
+    }
     if (calculator.operatorClicked.length === 2){
       calculator.compute();
     }
     if (calculator.masterEquation.length === 2 && calculator.operatorClicked.length < 2){
       calculator.masterEquation.shift();
+    }
+     if ($('h1').text() === 'NaN'){
+       $('.number').attr('disabled', 'disabled');
+       $('.operator').attr('disabled', 'disabled');
+       $('.equals').attr('disabled', 'disabled');
+       $('h1').text('undefined');
     }
     console.log('BestInfo MasterEquationArray', calculator.masterEquation);
     console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
@@ -82,7 +86,7 @@ var calculator = {
     console.log('best info equals clicked last:', calculator.equalsClickedLast);
   },
   equalsIsClicked: function(event){
-    event.preventDefault();
+    event.preventDefault;
     calculator.equalsClickedLast = true;
     calculator.operatorWasClickedLast = true;
     console.log('masterequa1', calculator.masterEquation.push(calculator.numberClicked.join('')));
@@ -92,6 +96,7 @@ var calculator = {
     calculator.numberClicked = [];
     calculator.decimalHasBeenClicked = false;
     $('#decimal').removeAttr('disabled');
+    $('.number').removeAttr('disabled');
     console.log('BestInfo MasterEquationArray', calculator.masterEquation);
     console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
     console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
@@ -108,7 +113,7 @@ var calculator = {
     calculator.compute();
   },
   clearIsClicked: function(event){
-    event.preventDefault();
+    //event.preventDefault();
     calculator.masterEquation = [];
     calculator.operatorClicked = [];
     calculator.numberClicked = [];
@@ -117,6 +122,9 @@ var calculator = {
     calculator.equalsClickedLast = false;
     calculator.numberToEvaluate = 0;
     $('#decimal').removeAttr('disabled');
+    $('.number').removeAttr('disabled');
+    $('.operator').removeAttr('disabled');
+    $('.equals').removeAttr('disabled');
     $('h1').text('');
     console.log('afterclear master', calculator.masterEquation);
     console.log('afterclear operator', calculator.operatorClicked);
