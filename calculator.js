@@ -162,9 +162,6 @@ var calculator = {
    }else{
       $('h1').css({'font-size' : '200%'})
    }
-   console.log('BestInfo MasterEquationArray', calculator.masterEquation);
-    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
-    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
   }
 }
 $(document).ready(calculator.init);
