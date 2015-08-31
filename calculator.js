@@ -1,4 +1,3 @@
-
 var calculator = {
 
   masterEquation: [],
@@ -6,87 +5,96 @@ var calculator = {
   numberClicked: [],
   decimalHasBeenClicked: false,
   numberToEvaluate: 0,
-  numberWasClickedLast: false,
   operatorWasClickedLast: false,
-
-
+  equalsClickedLast: false,
 
   init: function(){
     $('.number').click(calculator.numberIsClicked);
     $('.operator').click(calculator.operatorIsClicked);
     $('.equals').click(calculator.equalsIsClicked);
     $('.clear').click(calculator.clearIsClicked);
-    $('#decimal').click(calculator.decimalIsClicked);
-    $('#toggle').click(calculator.toggleIsClicked); 
+    $('.decimal').click(calculator.decimalIsClicked);
   },
-
   numberIsClicked: function(event){
     event.preventDefault();
     calculator.operatorWasClickedLast = false;
-    calculator.numberWasClickedLast = true;
-    console.log('num clicked last?', calculator.numberWasClickedLast);
-    console.log('operator clicked Last?', calculator.operatorWasClickedLast);
     if(calculator.numberClicked.length >= 20){
       $('.number').attr('disabled', 'disabled')
     } 
-    var numberSelected = $(this).text();
-    calculator.numberClicked.push(numberSelected);
-    console.log('numbers clicked :' , calculator.numberClicked);
+    var numberSelected = $(this).attr('id');
+    console.log('number selected', numberSelected);
+    if (numberSelected === '-' && calculator.equalsClickedLast === true){
+      var variableToMove = calculator.masterEquation.pop();
+      console.log('varable to move:', calculator.variableToMove);
+      if(variableToMove > 0){
+      calculator.numberClicked.push(variableToMove);
+      }else if(variableToMove < 0){
+      variableToMove = variableToMove * -1;
+      calculator.numberClicked.push(variableToMove);
+      } 
+    } 
+    calculator.equalsClickedLast = false;
+    if (numberSelected === '-' && calculator.equalsClickedLast === false){
+      if(calculator.numberClicked[0] !== '-'){
+        calculator.numberClicked.unshift(numberSelected);
+      }else if (calculator.numberClicked[0] === '-'){
+        calculator.numberClicked.shift(numberSelected);
+      }
+    }else{
+      calculator.numberClicked.push(numberSelected);
+    }
     $('h1').text(calculator.numberClicked.toString().replace(/,/g, ''));
     if ($('h1').text().length >= 13){
       $('h1').css({'font-size' : '130%'});
-   }else{
-      $('h1').css({'font-size' : '200%'})
-   }
+    }else{
+      $('h1').css({'font-size' : '200%'});
+    }
+    console.log('BestInfo MasterEquationArray', calculator.masterEquation);
+    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
+    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
+    console.log('best info equals clicked last:', calculator.equalsClickedLast);
   },
 
   operatorIsClicked: function(event){
     event.preventDefault();
     calculator.decimalHasBeenClicked = false;
     calculator.operatorWasClickedLast = true;
-    calculator.numberWasClickedLast = false;
-    //console.log('num clicked last?', calculator.numberWasClickedLast);
-    //console.log('operator clicked Last?', calculator.operatorWasClickedLast);
+    calculator.equalsClickedLast = false;
     $('#decimal').removeAttr('disabled');
     $('.number').removeAttr('disabled');
     var operatorToUse = $(this).attr('id');
     calculator.operatorClicked.push(operatorToUse);
     if (calculator.numberClicked.length !== 0){
        calculator.masterEquation.push(calculator.numberClicked.join(''));
-       //console.log('master equation:',calculator.masterEquation);
-       //console.log('operators', calculator.operatorClicked);
        calculator.numberClicked = [];
      }
 
     if (calculator.operatorClicked.length === 2){
       calculator.compute();
-      //console.log('master equation:',calculator.masterEquation);
     }
     if (calculator.masterEquation.length === 2 && calculator.operatorClicked.length < 2){
       calculator.masterEquation.shift();
-      //console.log('master equation after shift:',calculator.masterEquation);
     }
     console.log('BestInfo MasterEquationArray', calculator.masterEquation);
     console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
     console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
-
+    console.log('best info equals clicked last:', calculator.equalsClickedLast);
   },
-
   equalsIsClicked: function(event){
     event.preventDefault();
     calculator.equalsClickedLast = true;
     calculator.operatorWasClickedLast = true;
-    calculator.masterEquation.push(calculator.numberClicked.join(''));
-    calculator.masterEquation.splice(1, 2, calculator.numberClicked.join(''))
+    console.log('masterequa1', calculator.masterEquation.push(calculator.numberClicked.join('')));
+    console.log('masterequa2',calculator.masterEquation.splice(1, 2, calculator.numberClicked.join('')));
     calculator.compute();
     calculator.operatorClicked = [];
     calculator.numberClicked = [];
     calculator.decimalHasBeenClicked = false;
     $('#decimal').removeAttr('disabled');
-    console.log('master equation:',calculator.masterEquation);
-    console.log('numberclickedLast: ', calculator.numberClicked);
-
-
+    console.log('BestInfo MasterEquationArray', calculator.masterEquation);
+    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
+    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
+    console.log('best info equals clicked last:', calculator.equalsClickedLast);
   },
   decimalIsClicked: function(event){
     calculator.decimalHasBeenClicked = true;
@@ -94,41 +102,20 @@ var calculator = {
       $(this).attr('disabled', 'disabled');
     }
   },
-  toggleIsClicked: function(){
-    if (calculator.numberToEvaluate === 0 && calculator.operatorWasClickedLast === false
-        || calculator.operatorClicked.length < 1
-        ){
-      if(calculator.numberClicked[0] !== '-'){
-        calculator.numberClicked.unshift('-');
-       }else if (calculator.numberClicked[0] === '-'){
-         calculator.numberClicked.shift('-');
-       }
-    $('h1').text(calculator.numberClicked.toString().replace(/,/g, ''));   
-    }else if (calculator.numberToEvaluate !== 0 && calculator.operatorClicked.length >= 1
-               && calculator.operatorWasClickedLast === true){
-      calculator.numberToEvaluate = calculator.numberToEvaluate * -1
-      calculator.masterEquation.splice(0, 1, calculator.numberToEvaluate);
-      $('h1').text(calculator.masterEquation.splice(0, 1, calculator.numberToEvaluate));
-      console.log("newest masterArray:",calculator.masterEquation);
-      console.log('operater length after toggle:', calculator.operatorClicked);
-      calculator.operatorClicked = [];
-
-    }
-  },
-
   clearIsClicked: function(event){
     event.preventDefault();
     calculator.masterEquation = [];
     calculator.operatorClicked = [];
     calculator.numberClicked = [];
     calculator.decimalHasBeenClicked = false;
+    calculator.operatorWasClickedLast = false;
+    calculator.numberToEvaluate = 0;
     $('#decimal').removeAttr('disabled');
     $('h1').text('');
     console.log('afterclear master', calculator.masterEquation);
     console.log('afterclear operator', calculator.operatorClicked);
     console.log('afterclear number', calculator.numberClicked);
   },
-
   compute: function(){
     var op = calculator.operatorClicked.shift();
     var num1 = calculator.masterEquation[0];
