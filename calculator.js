@@ -7,6 +7,7 @@ var calculator = {
   numberToEvaluate: 0,
   operatorWasClickedLast: false,
   equalsClickedLast: false,
+  percentClickedLast: true,
   rightAfterEquals: false,
   randomColorFeatureInitiated: false,
   normalColorFeatureInitiated: true,
@@ -53,7 +54,7 @@ var calculator = {
     } 
     var numberSelected = $(this).attr('id');
     console.log('number selected', numberSelected);
-    if (numberSelected === '-' && calculator.equalsClickedLast === true){
+    if (numberSelected === '-' && (calculator.equalsClickedLast === true || calculator.percentClickedLast === true)){
       var variableToMove = calculator.masterEquation.pop();
       if(variableToMove > 0){
       calculator.numberClicked.push(variableToMove);
@@ -149,6 +150,8 @@ var calculator = {
   percentSignIsClicked: function(){
     calculator.numberClicked.push(100);
     calculator.compute();
+    calculator.percentClickedLast = true;
+    console.log('percent last clicked', calculator.percentClickedLast);
   },
   clearIsClicked: function(event){
     if (calculator.randomColorFeatureInitiated === true){
