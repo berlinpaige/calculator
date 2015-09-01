@@ -6,38 +6,60 @@
    <meta charset-"UTF-8">
  </head>
  <body>
-   <div class='container text-center'>
+    <div class = 'container text-center'>
+      <h2>Crazy Color Calculator</h2>
+      <button class= 'normalColorFeature'>Original Color Computing</button>
+      <button class='randomColorGenerator'>Random Color Surprise</button>
+      <button class= 'pickYourColorGenerator'>Choose Your Own Color</button>
+        <div id="colorSelect">
+           <span id="newColor"></span>
+           <div class="sliders">
+             <p>
+               <label for="red">Red</label>
+               <input id="red" name="red" type="range" min=0 max=255 value=0>
+             </p>
+              <p>
+               <label for="green">Green</label>
+               <input id="green" name="green" type="range" min=0 max=255 value=0>
+             </p>
+             <p>
+               <label for="blue">Blue</label>
+               <input id="blue" name="blue" type="range" min=0 max=255 value=0>
+              </p>
+        </div>
+    </div>  
+   <div class='container normalBackground'>
      <div class='display col-xs-12'>
       <h1></h1>
      </div>    
      <div class='row'>
-      <button type='button' class= 'clear btn btn-md btn-default col-xs-3'>C</button>
-      <button type='button' id='-' class= 'toggle number btn btn-md btn-default col-xs-3'>+/-</button>
-      <button type='button' id='percentSign' class= 'operator btn btn-md btn-default col-xs-3'>%</button>
-      <button type='button' id='/' class= 'operator btn btn-md btn-default col-xs-3'>&#247</button>
+      <button type='button' class= 'function clear col-xs-3'>C</button>
+      <button type='button' id='-' class= 'function toggle number col-xs-3'>+/-</button>
+      <button type='button' id='percentSign' class= 'function operator  col-xs-3'>%</button>
+      <button type='button' id='/' class= 'function operator  col-xs-3'>&#247</button>
      </div>
      <div class='row'>
-      <button type='button' id='7' class= 'number btn btn-md btn-default col-xs-3'>7</button>
-      <button type='button' id='8' class= 'number btn btn-md btn-default col-xs-3'>8</button>
-      <button type='button' id='9' class= 'number btn btn-md btn-default col-xs-3'>9</button>
-      <button type='button' id='x' class= 'operator btn btn-md btn-default col-xs-3'>x</button>
+      <button type='button' id='7' class= 'function number  col-xs-3'>7</button>
+      <button type='button' id='8' class= 'function number  col-xs-3'>8</button>
+      <button type='button' id='9' class= 'function number  col-xs-3'>9</button>
+      <button type='button' id='x' class= 'function operator  col-xs-3'>x</button>
      </div>
      <div class = 'row'>
-      <button type='button' id='4' class= 'number btn btn-md btn-default col-xs-3'>4</button>
-      <button type='button' id='5' class= 'number btn btn-md btn-default col-xs-3'>5</button>
-      <button type='button' id='6' class= 'number btn btn-md btn-default col-xs-3'>6</button>
-      <button type='button' id='-' class= 'operator btn btn-md btn-default col-xs-3'>-</button>
+      <button type='button' id='4' class= 'function number  col-xs-3'>4</button>
+      <button type='button' id='5' class= 'function number  col-xs-3'>5</button>
+      <button type='button' id='6' class= 'function number  col-xs-3'>6</button>
+      <button type='button' id='-' class= 'function operator  col-xs-3'>-</button>
      </div>
      <div class= 'row'>
-      <button type='button' id='1' class= 'number btn btn-md btn-default col-xs-3'>1</button>
-      <button type='button' id='2' class= 'number btn btn-md btn-default col-xs-3'>2</button>
-      <button type='button' id='3' class= 'number btn btn-md btn-default col-xs-3'>3</button>
-      <button type='button' id='+' class= 'operator btn btn-md btn-default col-xs-3'>+</button>
+      <button type='button' id='1' class= 'function number  col-xs-3'>1</button>
+      <button type='button' id='2' class= 'function number  col-xs-3'>2</button>
+      <button type='button' id='3' class= 'function number  col-xs-3'>3</button>
+      <button type='button' id='+' class= 'function operator  col-xs-3'>+</button>
      </div>
      <div class= 'row'>
-      <button type='button' id='0' class= 'number btn btn-md btn-default col-xs-6'>0</button>
-      <button type='button' id='.' class= 'decimal number btn btn-md btn-default col-xs-3'>.</button>
-      <button type='button' class= 'equals btn btn-md btn-default col-xs-3'>=</button>
+      <button type='button' id='0' class= 'function number  col-xs-6'>0</button>
+      <button type='button' id='.' class= 'function decimal number  col-xs-3'>.</button>
+      <button type='button' class= 'function equals  col-xs-3'>=</button>
      </div>
    </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

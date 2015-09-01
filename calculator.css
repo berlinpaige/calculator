@@ -1,20 +1,47 @@
-.container{
+
+body{ 
+  background: url(math.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.normalBackground{
 	width: 40%;
 	margin-top: 10%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5%;
+  background-color: rgba(0, 51, 153, 0.85);
+  font-weight: 500;
+  box-shadow: 5px 5px 5px gray;
+ 
 }
 
 button{
 	height: 70px;
+  border-radius: 5px;
+  background-color: #80b2ff;
+
 }
 
 .display{
 	height: 70px;
-	border: 1px solid gray;
+	border: 2px solid #80b2ff;
 	border-radius: 5px;
 	width: 110%;
-	margin-left: -5%;
+  margin: -5% 0px 5% -5%;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 h1{
 	float: right;
+}
+
+#colorSelect {
+  font-size: 30px;
+  text-shadow: -10px 0px #000000, 0px 10px #000000, 10px 0px #000000, 0px -10px #000000;
 }
