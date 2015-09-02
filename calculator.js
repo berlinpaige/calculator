@@ -24,11 +24,14 @@ var calculator = {
     $('.pickYourColorGenerator').click(calculator.pickYourColor);
     $('.normalColorFeature').click(calculator.normalColor);
     $('#colorSelect').toggle();
+    $('#randomExplanation').toggle();
   },
   randomColorGenerator: function(){
     calculator.randomColorFeatureInitiated = true;
     calculator.normalColorFeatureInitiated = false;
     calculator.pickYourColorFeatureInitiated = false;
+    $('h3').text('See what happens when you click equals!');
+    $('#randomExplanation').toggle();
     console.log('color feature', calculator.randomColorFeatureInitiated);
   },
   normalColor: function(){
@@ -151,7 +154,6 @@ var calculator = {
     calculator.numberClicked.push(100);
     calculator.compute();
     calculator.percentClickedLast = true;
-    console.log('percent last clicked', calculator.percentClickedLast);
   },
   clearIsClicked: function(event){
     if (calculator.randomColorFeatureInitiated === true){

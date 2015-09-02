@@ -8,22 +8,25 @@
  <body>
     <div class = 'container text-center'>
       <h2>Crazy Color Calculator</h2>
-      <button class= 'normalColorFeature'>Original Color Computing</button>
+      <button class= 'normalColorFeature'>Revert to Original Colors</button>
       <button class='randomColorGenerator'>Random Color Surprise</button>
       <button class= 'pickYourColorGenerator'>Choose Your Own Color</button>
+      <div id='randomExplanation'>
+        <h3></h3>
+      </div>
         <div id="colorSelect">
            <span id="newColor"></span>
            <div class="sliders">
              <p>
-               <label for="red">Red</label>
+               <label for="red">Slide the Toggle to Add Shades of Red</label>
                <input id="red" name="red" type="range" min=0 max=255 value=0>
              </p>
               <p>
-               <label for="green">Green</label>
+               <label for="green">Slide the Toggle to Add Shades of Green</label>
                <input id="green" name="green" type="range" min=0 max=255 value=0>
              </p>
              <p>
-               <label for="blue">Blue</label>
+               <label for="blue">Slide the Toggle to Add Shades of Blue</label>
                <input id="blue" name="blue" type="range" min=0 max=255 value=0>
               </p>
         </div>

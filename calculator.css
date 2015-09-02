@@ -1,11 +1,13 @@
 
-body{ 
-  background: url(math.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  color: #ffffff;
+body {
+    background-image: url(math.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #000000;
+    color: #ffffff;
+    text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
 }
 
 .normalBackground{
@@ -42,7 +44,7 @@ h1{
 	float: right;
 }
 
-#colorSelect {
+#colorSelect, #randomExplanation {
   font-size: 30px;
-  text-shadow: -10px 0px #000000, 0px 10px #000000, 10px 0px #000000, 0px -10px #000000;
+  text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
 }
