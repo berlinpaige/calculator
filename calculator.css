@@ -7,7 +7,6 @@ body {
     background-size: cover;
     background-color: #000000;
     color: #ffffff;
-    text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
 }
 
 .normalBackground{
@@ -42,6 +41,9 @@ button{
 
 h1{
 	float: right;
+}
+h2{
+  text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
 }
 
 #colorSelect, #randomExplanation {
