@@ -9,7 +9,6 @@ var calculator = {
   equalsClickedLast: false,
   percentClickedLast: true,
   rightAfterEquals: false,
-  randomColorFeatureInitiated: false,
   normalColorFeatureInitiated: true,
   pickYourColorFeatureInitiated: false,
 
@@ -20,22 +19,12 @@ var calculator = {
     $('.clear').click(calculator.clearIsClicked);
     $('.decimal').click(calculator.decimalIsClicked);
     $('#percentSign').click(calculator.percentSignIsClicked);
-    $('.randomColorGenerator').click(calculator.randomColorGenerator);
     $('.pickYourColorGenerator').click(calculator.pickYourColor);
     $('.normalColorFeature').click(calculator.normalColor);
     $('#colorSelect').toggle();
     $('#randomExplanation').toggle();
   },
-  randomColorGenerator: function(){
-    calculator.randomColorFeatureInitiated = true;
-    calculator.normalColorFeatureInitiated = false;
-    calculator.pickYourColorFeatureInitiated = false;
-    $('h3').text('See what happens when you click equals!');
-    $('#randomExplanation').toggle();
-    console.log('color feature', calculator.randomColorFeatureInitiated);
-  },
   normalColor: function(){
-    calculator.randomColorFeatureInitiated = false;
     calculator.normalColorFeatureInitiated = true;
     calculator.pickYourColorFeatureInitiated = false;
     $('.normalBackground').css({"background-color" : 'rgba(0, 51, 153, 0.85)'});
@@ -43,7 +32,6 @@ var calculator = {
     $('.display').css({'background-color' : '#ffffff', 'color' : '#000000'})
   },
   pickYourColor: function(){
-    calculator.randomColorFeatureInitiated = false;
     calculator.normalColorFeatureInitiated = false;
     calculator.pickYourColorFeatureInitiated = true;
     $('#colorSelect').toggle();
@@ -125,10 +113,6 @@ var calculator = {
   },
   equalsIsClicked: function(event){
     event.preventDefault;
-    if (calculator.randomColorFeatureInitiated === true){
-      calculator.randomColorFeature();
-      console.log('randomColorWorks!')
-    }
     calculator.equalsClickedLast = true;
     calculator.operatorWasClickedLast = true;
     console.log('masterequa1', calculator.masterEquation.push(calculator.numberClicked.join('')));
@@ -156,10 +140,6 @@ var calculator = {
     calculator.percentClickedLast = true;
   },
   clearIsClicked: function(event){
-    if (calculator.randomColorFeatureInitiated === true){
-      calculator.randomColorFeature();
-      console.log('randomColorWorks!')
-    }
     calculator.masterEquation = [];
     calculator.operatorClicked = [];
     calculator.numberClicked = [];
@@ -203,32 +183,6 @@ var calculator = {
    }else{
       $('h1').css({'font-size' : '200%'})
    }
-  },
-  randomColorFeature: function(){
-    var nullValueArray = [0,0,0,0,0,0];
-      function randomizer(array) {
-        return array.map(function (i) {
-        i = Math.floor(Math.random() * 9) + 1; 
-        return i;
-      });
-    } 
-    var randomValueArray = randomizer(nullValueArray);
-    randomValueArray.unshift("#");
-    randomHexValue = randomValueArray.join("");
-    function invertColor(hexTripletColor) {
-      var color = hexTripletColor;
-      color = color.substring(1);           
-      color = parseInt(color, 16);          
-      color = 0xFFFFFF ^ color;             
-      color = color.toString(16);           
-      color = ("000000" + color).slice(-6); 
-      color = "#" + color;                  
-      return color;
-    }
-    var textColor = invertColor(randomHexValue);
-    $('.normalBackground').css({"background-color" : randomHexValue });
-    $('button, .display').css({'color' : textColor ,'background-color' : '#ffffff'});
-    console.log('random color rocks');
   },
   personalizeColor: function(){
     function changeColor(){

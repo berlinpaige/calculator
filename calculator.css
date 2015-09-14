@@ -8,7 +8,6 @@ body {
     background-color: #000000;
     color: #ffffff;
 }
-
 .normalBackground{
 	width: 40%;
 	margin-top: 10%;
@@ -18,17 +17,13 @@ body {
   background-color: rgba(0, 51, 153, 0.85);
   font-weight: 500;
   box-shadow: 5px 5px 5px gray;
- 
 }
-
 button{
 	height: 70px;
   border-radius: 5px;
   background-color: #80b2ff;
   color: #000000;
-
 }
-
 .display{
 	height: 70px;
 	border: 2px solid #80b2ff;
@@ -38,14 +33,12 @@ button{
   background-color: #ffffff;
   color: #000000;
 }
-
 h1{
 	float: right;
 }
 h2{
   text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
 }
-
 #colorSelect, #randomExplanation {
   font-size: 30px;
   text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
