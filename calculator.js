@@ -7,7 +7,7 @@ var calculator = {
   numberToEvaluate: 0,
   operatorWasClickedLast: false,
   equalsClickedLast: false,
-  percentClickedLast: true,
+  percentClickedLast: false,
   rightAfterEquals: false,
   normalColorFeatureInitiated: true,
   pickYourColorFeatureInitiated: false,
@@ -46,6 +46,9 @@ var calculator = {
     var numberSelected = $(this).attr('id');
     console.log('number selected', numberSelected);
     if (numberSelected === '-' && (calculator.equalsClickedLast === true || calculator.percentClickedLast === true)){
+      if (calculator.percentClickedLast === true){
+        $('.decimal').attr('disabled', 'disabled');
+      }
       var variableToMove = calculator.masterEquation.pop();
       if(variableToMove > 0){
       calculator.numberClicked.push(variableToMove);
@@ -146,6 +149,7 @@ var calculator = {
     calculator.decimalHasBeenClicked = false;
     calculator.operatorWasClickedLast = false;
     calculator.equalsClickedLast = false;
+    calculator.percentClickedLast = false;
     calculator.numberToEvaluate = 0;
     $('.decimal').removeAttr('disabled');
     $('.number').removeAttr('disabled');
