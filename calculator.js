@@ -40,15 +40,24 @@ var calculator = {
   numberIsClicked: function(event){
     event.preventDefault();
     calculator.operatorWasClickedLast = false;
+    // calculator.percentClickedLast = false;
+      if ((calculator.operatorClicked[0] === ('+' || '/' || 'x' || '-')) && calculator.percentClickedLast === true){
+      calculator.percentClickedLast === false;
+    }else{
+      console.log( 'operator is false');
+    }
     if(calculator.numberClicked.length >= 20){
       $('.number').attr('disabled', 'disabled');
     } 
     var numberSelected = $(this).attr('id');
     console.log('number selected', numberSelected);
     if (numberSelected === '-' && (calculator.equalsClickedLast === true || calculator.percentClickedLast === true)){
-      if (calculator.percentClickedLast === true){
-        $('.decimal').attr('disabled', 'disabled');
-      }
+      // if (calculator.percentClickedLast === true){
+      //   $('.decimal').attr('disabled', 'disabled');
+      // }
+     
+
+
       var variableToMove = calculator.masterEquation.pop();
       if(variableToMove > 0){
       calculator.numberClicked.push(variableToMove);
