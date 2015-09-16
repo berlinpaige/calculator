@@ -42,10 +42,11 @@ var calculator = {
     calculator.operatorWasClickedLast = false;
     // calculator.percentClickedLast = false;
       if ((calculator.operatorClicked[0] === ('+' || '/' || 'x' || '-')) && calculator.percentClickedLast === true){
-      calculator.percentClickedLast === false;
-    }else{
-      console.log( 'operator is false');
+      calculator.percentClickedLast = false;
     }
+   // else{
+    //   console.log( 'operator is false');
+    // }
     if(calculator.numberClicked.length >= 20){
       $('.number').attr('disabled', 'disabled');
     } 
