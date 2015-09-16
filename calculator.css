@@ -16,6 +16,7 @@ body {
   font-weight: 500;
   box-shadow: 5px 5px 5px gray;
   width: 80%;
+  margin-bottom: 100px;
 }
 button{
 	height: 70px;
