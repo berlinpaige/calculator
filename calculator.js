@@ -40,33 +40,21 @@ var calculator = {
   numberIsClicked: function(event){
     event.preventDefault();
     calculator.operatorWasClickedLast = false;
-    // calculator.percentClickedLast = false;
-      if ((calculator.operatorClicked[0] === ('+' || '/' || 'x' || '-')) && calculator.percentClickedLast === true){
+    if ((calculator.operatorClicked[0] === ('+' || '/' || 'x' || '-')) && calculator.percentClickedLast === true){
       calculator.percentClickedLast = false;
     }
-   // else{
-    //   console.log( 'operator is false');
-    // }
     if(calculator.numberClicked.length >= 20){
       $('.number').attr('disabled', 'disabled');
     } 
     var numberSelected = $(this).attr('id');
-    console.log('number selected', numberSelected);
     if (numberSelected === '-' && (calculator.equalsClickedLast === true || calculator.percentClickedLast === true)){
-      // if (calculator.percentClickedLast === true){
-      //   $('.decimal').attr('disabled', 'disabled');
-      // }
-     
-
-
       var variableToMove = calculator.masterEquation.pop();
       if(variableToMove > 0){
-      calculator.numberClicked.push(variableToMove);
+        calculator.numberClicked.push(variableToMove);
       }else if(variableToMove < 0){
-      variableToMove = variableToMove * -1;
-      var arrayToJoin = calculator.numberClicked.push(variableToMove);
-      calculator.rightAfterEquals = true;
-        console.log("rightAfterEquals", calculator.rightAfterEquals);
+        variableToMove = variableToMove * -1;
+        var arrayToJoin = calculator.numberClicked.push(variableToMove);
+        calculator.rightAfterEquals = true;
       } 
     } 
     calculator.equalsClickedLast = false;
@@ -89,10 +77,6 @@ var calculator = {
     }else{
       $('h1').css({'font-size' : '200%'});
     }
-    console.log('BestInfo MasterEquationArray', calculator.masterEquation);
-    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
-    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
-    console.log('best info equals clicked last:', calculator.equalsClickedLast);
   },
 
   operatorIsClicked: function(event){
@@ -119,27 +103,19 @@ var calculator = {
        $('.equals').attr('disabled', 'disabled');
        $('h1').text('undefined');
     }
-    console.log('BestInfo MasterEquationArray', calculator.masterEquation);
-    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
-    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
-    console.log('best info equals clicked last:', calculator.equalsClickedLast);
   },
   equalsIsClicked: function(event){
     event.preventDefault;
     calculator.equalsClickedLast = true;
     calculator.operatorWasClickedLast = true;
-    console.log('masterequa1', calculator.masterEquation.push(calculator.numberClicked.join('')));
-    console.log('masterequa2',calculator.masterEquation.splice(1, 2, calculator.numberClicked.join('')));
+    calculator.masterEquation.push(calculator.numberClicked.join(''));
+    calculator.masterEquation.splice(1, 2, calculator.numberClicked.join(''));
     calculator.compute();
     calculator.operatorClicked = [];
     calculator.numberClicked = [];
     calculator.decimalHasBeenClicked = false;
     $('.decimal').removeAttr('disabled');
     $('.number').removeAttr('disabled');
-    console.log('BestInfo MasterEquationArray', calculator.masterEquation);
-    console.log('BestInfo operatorClickedArray:', calculator.operatorClicked);
-    console.log('BestInfo numberClickedArray:' , calculator.numberClicked);
-    console.log('best info equals clicked last:', calculator.equalsClickedLast);
   },
   decimalIsClicked: function(event){
     calculator.decimalHasBeenClicked = true;
@@ -166,9 +142,6 @@ var calculator = {
     $('.operator').removeAttr('disabled');
     $('.equals').removeAttr('disabled');
     $('h1').text('');
-    console.log('afterclear master', calculator.masterEquation);
-    console.log('afterclear operator', calculator.operatorClicked);
-    console.log('afterclear number', calculator.numberClicked);
   },
   compute: function(){
     var op = calculator.operatorClicked.shift();
@@ -183,11 +156,9 @@ var calculator = {
       case 'percentSign': result = parseFloat(num1) / 100; calculator.numberClicked = []; break;
       default: $('h1').text(undefined)
     }
-    console.log('final answer', calculator.masterEquation.splice(0, 2, result));
+    calculator.masterEquation.splice(0, 2, result);
     $('h1').text(calculator.masterEquation);
     calculator.numberToEvaluate = result;
-    console.log('numberToEvaluate: ', calculator.numberToEvaluate);
-    console.log('to manipulate', result);
     if (result === undefined || NaN){
        $('h1').text('undefined');
        calculator.clearIsClicked();
