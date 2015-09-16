@@ -1,69 +1,83 @@
 <!DOCTYPE html>
-<html>
- <head>  
-   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-   <link rel='stylesheet' href='calculator.css'>
-   <meta charset-"UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
- </head>
- <body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crazy Color Calculator</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='calculator.css'>
+  </head>
+  <body>
     <div class = 'container text-center'>
       <h2>Crazy Color Calculator</h2>
-      <button class= 'normalColorFeature'>Revert to Original Colors</button>
-      <button class= 'pickYourColorGenerator'>Choose Your Own Color</button>
+      <div class='row'>
+        <button class= 'normalColorFeature'>Revert to Original Colors</button>
+        <button class= 'pickYourColorGenerator'>Choose Your Own Color</button>
         <div id="colorSelect">
-           <span id="newColor"></span>
-           <div class="sliders">
-             <p>
-               <label for="red">Slide the Toggle to Add Shades of Red</label>
-               <input id="red" name="red" type="range" min=0 max=255 value=0>
-             </p>
-              <p>
-               <label for="green">Slide the Toggle to Add Shades of Green</label>
-               <input id="green" name="green" type="range" min=0 max=255 value=0>
-             </p>
-             <p>
-               <label for="blue">Slide the Toggle to Add Shades of Blue</label>
-               <input id="blue" name="blue" type="range" min=0 max=255 value=0>
-              </p>
+          <span id="newColor"></span>
+          <div class="sliders">
+            <p>
+              <label for="red">Slide the Toggle to Add Shades of Red</label>
+              <input id="red" name="red" type="range" min=0 max=255 value=0>
+            </p>
+            <p>
+              <label for="green">Slide the Toggle to Add Shades of Green</label>
+              <input id="green" name="green" type="range" min=0 max=255 value=0>
+            </p>
+            <p>
+              <label for="blue">Slide the Toggle to Add Shades of Blue</label>
+              <input id="blue" name="blue" type="range" min=0 max=255 value=0>
+            </p>
+          </div>
         </div>
-    </div>  
-   <div class='container normalBackground'>
-     <div class='display col-xs-12'>
-      <h1></h1>
-     </div>    
-     <div class='row'>
-      <button type='button' class= 'clear col-xs-3'>C</button>
-      <button type='button' id='-' class= 'toggle number col-xs-3'>+/-</button>
-      <button type='button' id='percentSign' class= 'operator  col-xs-3'>%</button>
-      <button type='button' id='/' class= 'operator  col-xs-3'>&#247</button>
-     </div>
-     <div class='row'>
-      <button type='button' id='7' class= 'number  col-xs-3'>7</button>
-      <button type='button' id='8' class= 'number  col-xs-3'>8</button>
-      <button type='button' id='9' class= 'number  col-xs-3'>9</button>
-      <button type='button' id='x' class= 'operator  col-xs-3'>x</button>
-     </div>
-     <div class = 'row'>
-      <button type='button' id='4' class= 'number  col-xs-3'>4</button>
-      <button type='button' id='5' class= 'number  col-xs-3'>5</button>
-      <button type='button' id='6' class= 'number  col-xs-3'>6</button>
-      <button type='button' id='-' class= 'operator  col-xs-3'>-</button>
-     </div>
-     <div class= 'row'>
-      <button type='button' id='1' class= 'number  col-xs-3'>1</button>
-      <button type='button' id='2' class= 'number  col-xs-3'>2</button>
-      <button type='button' id='3' class= 'number  col-xs-3'>3</button>
-      <button type='button' id='+' class= 'operator  col-xs-3'>+</button>
-     </div>
-     <div class= 'row'>
-      <button type='button' id='0' class= 'number  col-xs-6'>0</button>
-      <button type='button' id='.' class= 'decimal number  col-xs-3'>.</button>
-      <button type='button' class= 'equals  col-xs-3'>=</button>
-     </div>
-   </div>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-   <script src='calculator.js'></script>   
- </body>	
+      <div class='container normalBackground'>
+        <div class='display col-sm-12'>
+          <h1></h1>
+        </div> 
+        <div class='container-fluid'>
+          <div class='row'>
+            <button type='button' class='btn clear'>C</button>
+            <button type='button' id='-' class='btn toggle number'>+/-</button>
+            <button type='button' id='percentSign' class='btn operator'>%</button>
+            <button type='button' id='/' class='btn operator'>&#247</button>
+          </div>
+        </div>
+        <div class='container-fluid'>
+          <div class='row'>
+            <button type='button' id='7' class='btn number'>7</button>
+            <button type='button' id='8' class='btn number'>8</button>
+            <button type='button' id='9' class='btn number'>9</button>
+            <button type='button' id='x' class='btn operator'>x</button>
+          </div>
+        </div>
+        <div class='container-fluid'>
+          <div class='row'>
+             <button type='button' id='4' class='btn number'>4</button>
+            <button type='button' id='5' class='btn number'>5</button>
+            <button type='button' id='6' class='btn number'>6</button>
+            <button type='button' id='-' class='btn operator'>-</button>
+          </div>
+        </div>
+        <div class='container-fluid'>
+          <div class='row'>
+             <button type='button' id='1' class='btn number'>1</button>
+            <button type='button' id='2' class='btn number'>2</button>
+            <button type='button' id='3' class='btn number'>3</button>
+            <button type='button' id='+' class='btn operator'>+</button>
+          </div>
+        </div>
+        <div class='container-fluid'>
+          <div class='row'>
+            <button type='button' id='0' class='btn number zero'>0</button>
+            <button type='button' id='.'class='btn decimal number'>.</button>
+            <button type='button' class='btn equals'>=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script src='calculator.js'></script>
+  </body>
 </html>

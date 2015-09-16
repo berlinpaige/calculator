@@ -85,6 +85,7 @@ var calculator = {
     calculator.operatorWasClickedLast = true;
     calculator.equalsClickedLast = false;
     $('.decimal').removeAttr('disabled');
+    $('.number').removeAttr('disabled');
     var operatorToUse = $(this).attr('id');
     calculator.operatorClicked.push(operatorToUse);
     if (calculator.numberClicked.length !== 0){

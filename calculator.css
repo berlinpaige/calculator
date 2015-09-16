@@ -9,32 +9,36 @@ body {
     color: #ffffff;
 }
 .normalBackground{
-	width: 40%;
-	margin-top: 10%;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 5%;
   background-color: rgba(0, 51, 153, 0.85);
   font-weight: 500;
   box-shadow: 5px 5px 5px gray;
+  width: 80%;
 }
 button{
 	height: 70px;
+  width: 24%;
   border-radius: 5px;
   background-color: #80b2ff;
   color: #000000;
+  margin-top: 5px;
 }
+
 .display{
 	height: 70px;
 	border: 2px solid #80b2ff;
 	border-radius: 5px;
-	width: 110%;
-  margin: -5% 0px 5% -5%;
+  margin-bottom: 5px;
   background-color: #ffffff;
   color: #000000;
 }
 h1{
 	float: right;
+}
+.zero{
+  width: 49%;
 }
 h2{
   text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
@@ -42,4 +46,9 @@ h2{
 #colorSelect, #randomExplanation {
   font-size: 30px;
   text-shadow: -5px 0px #000000, 0px 5px #000000, 5px 0px #000000, 0px -5px #000000;
+}
+.normalColorFeature, .pickYourColorGenerator {
+  margin-bottom: 20px;
+  font-size: 20px;
+  height: 100px;
 }
