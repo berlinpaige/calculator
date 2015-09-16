@@ -61,6 +61,7 @@ h2{
 
   button{
     width: 20%;
+    height: 50px;
   }
   .normalColorFeature, .pickYourColorGenerator {
     font-size: 20px;
